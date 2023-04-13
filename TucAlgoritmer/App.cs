@@ -5,7 +5,6 @@ public class App
 {
     private static Random rand = new Random((int)DateTime.Now.Ticks);
     List<Car> cars = new List<Car>();
-    Dictionary<string,Car> carDict = new ();
 
     public Car GetCar(string regNo)
     {
@@ -45,7 +44,6 @@ public class App
                 Year = rand.Next(1970, 2023)
             };
             cars.Add(car);
-            carDict[regno] = car;
         }
 
         watch.Stop();
@@ -55,22 +53,6 @@ public class App
 
         string start = cars[100].Regno;
         string end = cars[cars.Count - 1].Regno;
-
-
-        watch.Reset();
-        watch.Start();
-        Car ca3;
-        carDict.TryGetValue(start, out ca3);
-        watch.Stop();
-        Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
-
-
-        watch.Reset();
-        watch.Start();
-        Car ca4;
-        carDict.TryGetValue(start, out ca4);
-        watch.Stop();
-        Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 
 
 
