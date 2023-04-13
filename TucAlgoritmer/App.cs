@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Numerics;
+using Microsoft.VisualBasic.CompilerServices;
 
 public class App
 {
     private static Random rand = new Random((int)DateTime.Now.Ticks);
     List<Car> cars = new List<Car>();
+
+    Dictionary<string, Car> carDict = new Dictionary<string, Car>();
 
     public Car GetCar(string regNo)
     {
@@ -19,10 +22,13 @@ public class App
     }
 
 
+
+    // O(n)
     public Car GetCarShortcut(string regNo)
     {
         foreach (var car in cars)
         {
+//            Thread.Sleep(10000);
             if (car.Regno == regNo)
                 return car;
         }
@@ -33,6 +39,13 @@ public class App
 
     public void Run()
     {
+
+        // DICTINARY = MAP
+        //var dict = new Dictionary<string, decimal>();
+        //dict["123 123-123"] = 100;
+        //dict["123 555-222"] = 500;
+
+
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
         for (int i = 0; i < 10000000; i++)
@@ -44,7 +57,11 @@ public class App
                 Year = rand.Next(1970, 2023)
             };
             cars.Add(car);
+            carDict[car.Regno] = car;
         }
+
+        cars = cars.OrderBy(car => car.Regno).ToList();
+
 
         watch.Stop();
 
@@ -55,16 +72,38 @@ public class App
         string end = cars[cars.Count - 1].Regno;
 
 
+        if (cars.Count(ca => ca.Year == 1972) > 0)
+        {
+            Console.WriteLine("Det finns bil(ar) från 1972 ");
+        }
+        //BÄTTRE 
+        if (cars.Any(ca => ca.Year == 1972) )
+        {
+            Console.WriteLine("Det finns bil(ar) från 1972 ");
+        }
+
 
         watch.Reset();
         watch.Start();
-        Car ca = GetCar(start);
+        Car ca;
+        if (carDict.TryGetValue(start, out ca))
+        {
+            Console.WriteLine("Hittade");
+        }
+        //Car ca = cars.FirstOrDefault(c => c.Regno == start);
+        //Car ca = GetCarShortcut(start);
         watch.Stop();
         Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 
         watch.Reset();
         watch.Start();
-        Car ca2 = GetCar(end);
+        Car ca2;
+        if (carDict.TryGetValue(end, out ca2))
+        {
+            Console.WriteLine("Hittade");
+        }
+
+        //Car ca2 = GetCarShortcut(end);
         watch.Stop();
         Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 
