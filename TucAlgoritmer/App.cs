@@ -58,13 +58,13 @@ public class App
 
         watch.Reset();
         watch.Start();
-        Car ca = GetCarShortcut(start);
+        Car ca = GetCar(start);
         watch.Stop();
         Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 
         watch.Reset();
         watch.Start();
-        Car ca2 = GetCarShortcut(end);
+        Car ca2 = GetCar(end);
         watch.Stop();
         Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 
