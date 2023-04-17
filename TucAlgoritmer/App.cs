@@ -84,18 +84,38 @@ public class App
 
     }
 
+    List<HockeyPlayer> ReadPlayers()
+    {
+        return new List<HockeyPlayer>()
+        {
+            new HockeyPlayer(),
+            new HockeyPlayer()
+        };
+    }
+
+    List<FootballPlayer> ReadPlayersFootball()
+    {
+        return new List<FootballPlayer>()
+        {
+            new FootballPlayer(),
+            new FootballPlayer()
+        };
+    }
+
+
 
     public void Run()
     {
         //var aaa = List<HockeyPlayer>();
         var dc = new DataCache<HockeyPlayer>();
-        var aw= dc.GetPlayers();
-        aw = dc.GetPlayers();
+        var aw= dc.GetPlayers(ReadPlayers);
+        aw = dc.GetPlayers(ReadPlayers);
+        var l = new List<int>();
 
 
         var dc33 = new DataCache<FootballPlayer>();
-        var aw33 = dc.GetPlayers();
-        aw33 = dc.GetPlayers();
+        var aw33 = dc33.GetPlayers(ReadPlayersFootball);
+        aw33 = dc33.GetPlayers(ReadPlayersFootball);
 
 
 
