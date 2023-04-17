@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic.CompilerServices;
+using TucAlgoritmer;
 
 public class App
 {
@@ -37,8 +39,95 @@ public class App
     }
 
 
+
+    int Add(int a, int b, int c, decimal aa)
+    {
+        return a + b + c + Convert.ToInt32(aa);
+    }
+
+
+
+
+
+    int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    int Add(int a, int b)
+    {
+        return a + b;
+    }
+    decimal Add(decimal a, decimal b)
+    {
+        return a + b;
+    }
+
+    
+
+
+    public class HockeyPlayer
+    {
+        public int Jersey { get; set; }
+        public string Name{ get; set; }
+
+        public bool IsTheBest()
+        {
+            return Jersey == 13; 
+        }
+    }
+
+    public class FootballPlayer
+    {
+        public int Shoesize { get; set; }
+        public string Name { get; set; }
+
+    }
+
+
     public void Run()
     {
+        //var aaa = List<HockeyPlayer>();
+        var dc = new DataCache<HockeyPlayer>();
+        var aw= dc.GetPlayers();
+        aw = dc.GetPlayers();
+
+
+        var dc33 = new DataCache<FootballPlayer>();
+        var aw33 = dc.GetPlayers();
+        aw33 = dc.GetPlayers();
+
+
+
+        var p = new App.HockeyPlayer();
+        if (p.IsFoppa())
+        {
+
+        }
+
+        if (p.IsTheBest())
+        {
+
+        }
+
+        // EXTENSION METOD
+        // en metod som skapas UTANFÖR en klass men
+        // attachas till klassen så man kör
+        // variabel.Metoden()
+        var list = new List<HockeyPlayer>();
+        var list2 = new List<int>();
+        var list3 = new List<float>();
+
+        list.Add(new HockeyPlayer());
+        list.Add(new HockeyPlayer());
+        list.CountIsTheBestPlayers();
+        //list.CountIsTheBestPlayers();
+        //var a = list.Count(p => p.IsTheBest());
+
+
+
+        int a = Add(12, 13);
+        int b = Add(12, 13, 14);
 
         // DICTINARY = MAP
         //var dict = new Dictionary<string, decimal>();
